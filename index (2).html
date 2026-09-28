@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAIMS - Seguridad Electrónica e Infraestructura</title>
+    <style>
+        :root {
+            --bg-main: #0f1115;
+            --bg-card: #161920;
+            --text-primary: #ffffff;
+            --text-secondary: #94a3b8;
+            --neon-green: #00ff66;
+            --neon-glow: rgba(0, 255, 102, 0.4);
+            --border-color: #242936;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(var(--border-color) 1px, transparent 0),
+                linear-gradient(to right, rgba(36,41,54,0.1) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(36,41,54,0.1) 1px, transparent 1px);
+            background-size: 40px 40px, 20px 20px, 20px 20px;
+        }
+
+        header {
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 1.5rem;
+            background: rgba(15, 17, 21, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            max-width: 220px;
+            margin-bottom: 2px;
+        }
+
+        .logo-img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 0 8px rgba(0, 255, 102, 0.2));
+        }
+
+        /* Respaldo elegante si la imagen no carga */
+        .logo-placeholder {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: 3px;
+            color: var(--text-primary);
+        }
+        .logo-placeholder span {
+            color: var(--neon-green);
+            text-shadow: 0 0 10px var(--neon-glow);
+        }
+
+        .tagline {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+
+        .hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 300px;
+            background: var(--neon-glow);
+            filter: blur(150px);
+            border-radius: 50%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        h1 mark {
+            background: none;
+            color: var(--neon-green);
+            text-shadow: 0 0 15px var(--neon-glow);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto 2.5rem auto;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: var(--neon-green);
+            color: #000000;
+            font-weight: 700;
+            padding: 1rem 2.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 0 20px var(--neon-glow);
+            transition: all 0.3s ease;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px var(--neon-green);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin: 4rem 0 2rem 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .section-title span {
+            color: var(--neon-green);
+        }
+
+        .grid-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 0 2rem;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: transparent;
+            transition: background 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 255, 102, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .card:hover::before {
+            background: var(--neon-green);
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            color: var(--neon-green);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            letter-spacing: 0.5px;
+        }
+
+        .card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .card-list {
+            margin-top: 1.5rem;
+            list-style: none;
+        }
+
+        .card-list li {
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+        }
+
+        .card-list li::before {
+            content: '▪';
+            color: var(--neon-green);
+        }
+
+        footer {
+            margin-top: 6rem;
+            border-top: 1px solid var(--border-color);
+            padding: 3rem 2rem;
+            text-align: center;
+            background: #090a0d;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        footer p strong {
+            color: var(--text-primary);
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .hero { padding: 3rem 1rem; }
+            .grid-container { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <div class="logo-container">
+                <!-- Vinculamos el archivo local del logo con un respaldo de texto inteligente -->
+                <img class="logo-img" src="logo.png" alt="HAIMS Seguridad Electrónica" onerror="this.style.display='none'; document.getElementById('alt-logo').style.display='block';">
+                <div id="alt-logo" class="logo-placeholder" style="display:none;">HAIMS<span>●</span></div>
+            </div>
+            <div class="tagline">Seguridad Electrónica Avanzada</div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>Sistemas de Seguridad Inteligentes con <mark>Respaldo Energético Total</mark></h1>
+        <p>Garantizamos continuidad operativa las 24 horas para empresas, condominios y hogares en Lechería, Puerto La Cruz, Barcelona y Guanta. Vigilancia y protección perimetral inmunes a los cortes de energía.</p>
+        <a href="https://wa.me/TU_NUMERO_AQUI?text=Hola%20HAIMS,%20deseo%20solicitar%20una%20cotización%20para%20un%20sistema%20de%20seguridad." class="cta-btn" target="_blank">Solicitar Asesoría Técnica</a>
+    </section>
+
+    <h2 class="section-title">Nuestras <span>Soluciones</span></h2>
+    <section class="grid-container">
+        <div class="card">
+            <div class="card-icon">⚡</div>
+            <h3>Respaldo Energético</h3>
+            <p>Inversores cargadores inteligentes y sistemas UPS optimizados para mantener en funcionamiento DVRs, enrutadores, alertas y cercas durante fallas del suministro comercial.</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">👁️</div>
+            <h3>CCTV e Inteligencia</h3>
+            <p>Instalación de cámaras de alta definición y sistemas de grabación con analíticas de video avanzadas, alertas perimetrales y monitoreo en tiempo real desde tu smartphone.</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">🛡️</div>
+            <h3>Cercado y Alarmas</h3>
+            <p>Diseño e instalación de cercados eléctricos perimetrales normados de alta potencia, sistemas de alarmas contra robos y sensores perimetrales contra intrusión.</p>
+        </div>
+    </section>
+
+    <h2 class="section-title">Especializados en <span>Tu Sector</span></h2>
+    <section class="grid-container">
+        <div class="card">
+            <h3>Empresas y Comercios</h3>
+            <p>Infraestructura tecnológica de alta robustez para proteger inventario y activos industriales.</p>
+            <ul class="card-list">
+                <li>Controles de acceso biométricos</li>
+                <li>Redes y cableado estructurado</li>
+                <li>Detección temprana de incendios</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>Condominios y Residencias</h3>
+            <p>Sistemas automatizados y de fácil gestión comunitaria para resguardar urbanizaciones cerradas.</p>
+            <ul class="card-list">
+                <li>Sistemas integrales de control vehicular</li>
+                <li>Monitoreo perimetral extendido</li>
+                <li>Mantenimiento preventivo programado</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>Hogares</h3>
+            <p>Tranquilidad y control total para tu familia con tecnologías inalámbricas y automatizadas.</p>
+            <ul class="card-list">
+                <li>Alarmas vecinales inteligentes</li>
+                <li>Automatización de portones y accesos</li>
+                <li>Visualización HD de cámaras remotas</li>
+            </ul>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 <strong>HAIMS Seguridad Electrónica</strong>. Todos los derechos reservados.</p>
+        <p style="margin-top: 5px; font-size: 0.8rem;">Anzoátegui, Venezuela (Zona Norte: Lechería • Puerto La Cruz • Barcelona • Guanta)</p>
+    </footer>
+
+</body>
+</html>
