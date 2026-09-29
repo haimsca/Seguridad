@@ -58,15 +58,48 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            max-width: 220px;
+            max-width: 260px;
             margin-bottom: 2px;
+            position: relative;
+        }
+
+        /* ANIMACIÓN NEÓN DE RESPIRACIÓN / PULSO DETRÁS DEL LOGO */
+        @keyframes neonBreathing {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.5;
+                filter: blur(30px);
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.35);
+                opacity: 0.95;
+                filter: blur(50px);
+            }
+        }
+
+        .logo-container::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 160px;
+            height: 160px;
+            background: var(--neon-glow);
+            filter: blur(35px);
+            border-radius: 50%;
+            z-index: 0;
+            pointer-events: none;
+            animation: neonBreathing 3.5s ease-in-out infinite;
         }
 
         .logo-img {
             width: 100%;
             height: auto;
             object-fit: contain;
-            filter: drop-shadow(0 0 8px rgba(0, 255, 102, 0.2));
+            position: relative;
+            z-index: 1;
+            filter: drop-shadow(0 0 12px rgba(0, 255, 102, 0.5));
         }
 
         /* Respaldo elegante si la imagen no carga */
@@ -75,6 +108,8 @@
             font-weight: 800;
             letter-spacing: 3px;
             color: var(--text-primary);
+            position: relative;
+            z-index: 1;
         }
         .logo-placeholder span {
             color: var(--neon-green);
@@ -203,6 +238,11 @@
             background: var(--neon-green);
         }
 
+        .card-highlight {
+            border-color: rgba(0, 255, 102, 0.2);
+            background: linear-gradient(145deg, #161920 0%, #10141b 100%);
+        }
+
         .card-icon {
             font-size: 2rem;
             color: var(--neon-green);
@@ -255,6 +295,25 @@
             color: var(--text-primary);
         }
 
+        .footer-contacts {
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-contacts a {
+            color: var(--neon-green);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .footer-contacts a:hover {
+            color: #ffffff;
+        }
+
         @media (max-width: 768px) {
             h1 { font-size: 2rem; }
             .hero { padding: 3rem 1rem; }
@@ -267,6 +326,7 @@
     <header>
         <div class="header-container">
             <div class="logo-container">
+                <!-- Enlace a tu archivo local logo.png -->
                 <img class="logo-img" src="logo.png" alt="HAIMS Seguridad Electrónica" onerror="this.style.display='none'; document.getElementById('alt-logo').style.display='block';">
                 <div id="alt-logo" class="logo-placeholder" style="display:none;">HAIMS<span>●</span></div>
             </div>
@@ -277,13 +337,51 @@
     <section class="hero">
         <h1>Sistemas de Seguridad Inteligentes con <mark>Respaldo Energético Total</mark></h1>
         <p>Garantizamos continuidad operativa las 24 horas para empresas, condominios y hogares en Lechería, Puerto La Cruz, Barcelona y Guanta. Vigilancia y protección perimetral inmunes a los cortes de energía.</p>
-        <a href="https://wa.me/+584129485995?text=Hola%20HAIMS,%20deseo%20solicitar%20una%20cotización%20para%20un%20sistema%20de%20seguridad." class="cta-btn" target="_blank">Solicitar Asesoría Técnica</a>
+        
+        <!-- MODIFICAR NÚMERO DE WHATSAPP AQUÍ -->
+        <a href="https://api.whatsapp.com/send?phone=584129485995&text=Hola%20HAIMS,%20deseo%20solicitar%20una%20cotización%20para%20un%20sistema%20de%20seguridad." class="cta-btn" target="_blank">Solicitar Asesoría Técnica</a>
     </section>
 
-    <!-- Nueva sección de Servicios basados en la tarjeta de presentación -->
+    <!-- RESPALDO ENERGÉTICO HÍBRIDO OFF-GRID -->
+    <h2 class="section-title">Respaldo Energético <span>Híbrido Off-Grid</span></h2>
+    <section class="grid-container">
+        <div class="card card-highlight">
+            <div class="card-icon">⚡</div>
+            <h3>Inversores Híbridos Off-Grid</h3>
+            <p>Sistemas todo-en-uno de onda senoidal pura que integran inversor, cargador inteligente y regulador de carga para mantener energizados tus equipos sensibles sin interrupciones.</p>
+            <ul class="card-list">
+                <li>Conmutación instantánea sin reiniciar DVRs o redes</li>
+                <li>Onda senoidal pura para electrónica delicada</li>
+                <li>Protección integral ante sobrevoltajes y apagones</li>
+            </ul>
+        </div>
+
+        <div class="card card-highlight">
+            <div class="card-icon">🔋</div>
+            <h3>Bancos de Baterías Litio / Gel</h3>
+            <p>Dimensionamiento e instalación de bancos de almacenamiento con baterías de ciclo profundo y Litio (LiFePO4) para máxima autonomía ante fallas prolongadas.</p>
+            <ul class="card-list">
+                <li>Baterías LiFePO4 de carga ultra rápida y larga vida útil</li>
+                <li>Gestión inteligente de descarga para preservar celdas</li>
+                <li>Autonomía escalable para horas o días de respaldo</li>
+            </ul>
+        </div>
+
+        <div class="card card-highlight">
+            <div class="card-icon">☀️</div>
+            <h3>Integración Solar e Híbrida</h3>
+            <p>Sistemas preparados para integración fotovoltaica, permitiendo generar energía propia durante el día y depender al mínimo de la red eléctrica comercial.</p>
+            <ul class="card-list">
+                <li>Generación solar autónoma de alta eficiencia</li>
+                <li>Gestión y priorización inteligente de energía</li>
+                <li>Independencia eléctrica en instalaciones críticas</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- SERVICIOS DE SEGURIDAD -->
     <h2 class="section-title">Nuestros <span>Servicios</span></h2>
     <section class="grid-container">
-        
         <div class="card">
             <div class="card-icon">📹</div>
             <h3>Cámaras de seguridad (CCTV)</h3>
@@ -331,9 +429,9 @@
             <h3>Pantallas Publicitarias</h3>
             <p>Soluciones de visualización e impacto comercial mediante pantallas de alta luminosidad y definición.</p>
         </div>
-        
     </section>
 
+    <!-- ESPECIALIZACIÓN POR SECTOR -->
     <h2 class="section-title">Especializados en <span>Tu Sector</span></h2>
     <section class="grid-container">
         <div class="card">
@@ -368,6 +466,13 @@
     <footer>
         <p>&copy; 2026 <strong>HAIMS Seguridad Electrónica</strong>. Todos los derechos reservados.</p>
         <p style="margin-top: 5px; font-size: 0.8rem;">Anzoátegui, Venezuela (Zona Norte: Lechería • Puerto La Cruz • Barcelona • Guanta)</p>
+        
+        <!-- MODIFICAR DATOS DE CONTACTO -->
+        <div class="footer-contacts">
+            <a href="https://api.whatsapp.com/send?phone=584129485995" target="_blank">📱 WhatsApp: +58 412-9485995</a>
+            <a href="https://instagram.com/HAIMS.SEGURIDAD.ELECTRONICA" target="_blank">📷 Instagram: @HAIMS.SEGURIDAD.ELECTRONICA</a>
+            <a href="mailto:HAIMS.CA@GMAIL.COM">✉️ HAIMS.CA@GMAIL.COM</a>
+        </div>
     </footer>
 
 </body>
