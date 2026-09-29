@@ -37,72 +37,56 @@
         header {
             border-bottom: 1px solid var(--border-color);
             padding: 1rem 1.5rem;
-            text-align: center;
             background: rgba(15, 17, 21, 0.95);
             backdrop-filter: blur(10px);
             position: sticky;
             top: 0;
             z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            gap: 5px;
         }
 
-        /* Contenedor especial para iluminar el logotipo de letras negras */
         .logo-container {
-            position: relative;
-            display: inline-flex;
+            display: flex;
             align-items: center;
             justify-content: center;
-            padding: 0.5rem 2rem;
-            margin-bottom: 0.25rem;
-        }
-
-        /* Efecto de destello verde neón difuminado detrás del logo */
-        .logo-container::before {
-            content: '';
-            position: absolute;
-            width: 85%;
-            height: 75%;
-            background: radial-gradient(circle, rgba(0, 255, 102, 0.8) 0%, rgba(0, 255, 102, 0.4) 45%, transparent 70%);
-            filter: blur(12px);
-            z-index: 1;
-            pointer-events: none;
-            border-radius: 50%;
+            max-width: 220px;
+            margin-bottom: 2px;
         }
 
         .logo-img {
-            max-height: 75px;
-            width: auto;
-            position: relative;
-            z-index: 2; /* Se posiciona por encima del destello verde */
-            display: block;
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 0 8px rgba(0, 255, 102, 0.2));
         }
 
-        /* Respaldo de texto si el archivo de imagen no carga */
-        .brand-fallback {
-            font-size: 2rem;
+        /* Respaldo elegante si la imagen no carga */
+        .logo-placeholder {
+            font-size: 1.8rem;
             font-weight: 800;
             letter-spacing: 3px;
             color: var(--text-primary);
-            position: relative;
-            z-index: 2;
         }
-
-        .brand-fallback span {
+        .logo-placeholder span {
             color: var(--neon-green);
             text-shadow: 0 0 10px var(--neon-glow);
         }
 
         .tagline {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 4px;
             color: var(--text-secondary);
-            margin-top: 2px;
-            position: relative;
-            z-index: 2;
+            text-align: center;
         }
 
         .hero {
@@ -183,7 +167,7 @@
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
             padding: 0 2rem;
         }
@@ -228,7 +212,7 @@
         }
 
         .card h3 {
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             margin-bottom: 1rem;
             letter-spacing: 0.5px;
         }
@@ -275,44 +259,116 @@
             h1 { font-size: 2rem; }
             .hero { padding: 3rem 1rem; }
             .grid-container { grid-template-columns: 1fr; }
-            .logo-img { max-height: 55px; }
-            .logo-container::before { width: 95%; height: 85%; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo-container">
-            <!-- Si tienes el logo subido se mostrará aquí con la iluminación detrás -->
-            <img src="logo.png" alt="HAIMS" class="logo-img" onerror="this.style.display='none'; document.getElementById('fallback').style.display='block';">
-            <div id="fallback" class="brand-fallback" style="display:none;">HAIMS<span>●</span></div>
+        <div class="header-container">
+            <div class="logo-container">
+                <img class="logo-img" src="logo.png" alt="HAIMS Seguridad Electrónica" onerror="this.style.display='none'; document.getElementById('alt-logo').style.display='block';">
+                <div id="alt-logo" class="logo-placeholder" style="display:none;">HAIMS<span>●</span></div>
+            </div>
+            <div class="tagline">Seguridad Electrónica Avanzada</div>
         </div>
-        <div class="tagline">Seguridad Electrónica Avanzada</div>
     </header>
 
     <section class="hero">
         <h1>Sistemas de Seguridad Inteligentes con <mark>Respaldo Energético Total</mark></h1>
         <p>Garantizamos continuidad operativa las 24 horas para empresas, condominios y hogares en Lechería, Puerto La Cruz, Barcelona y Guanta. Vigilancia y protección perimetral inmunes a los cortes de energía.</p>
-        <a href="https://wa.me." class="cta-btn" target="_blank">Solicitar Asesoría Técnica</a>
+        <a href="https://wa.me/+584129485995?text=Hola%20HAIMS,%20deseo%20solicitar%20una%20cotización%20para%20un%20sistema%20de%20seguridad." class="cta-btn" target="_blank">Solicitar Asesoría Técnica</a>
     </section>
 
-    <h2 class="section-title">Nuestras <span>Soluciones</span></h2>
+    <!-- Nueva sección de Servicios basados en la tarjeta de presentación -->
+    <h2 class="section-title">Nuestros <span>Servicios</span></h2>
     <section class="grid-container">
+        
+        <div class="card">
+            <div class="card-icon">📹</div>
+            <h3>Cámaras de seguridad (CCTV)</h3>
+            <p>Sistemas de monitoreo en alta definición con grabación continua y visualización remota en tiempo real.</p>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">🔐</div>
+            <h3>Control de acceso peatonal y vehicular</h3>
+            <p>Gestión automatizada y segura para el ingreso a instalaciones mediante biometría, tarjetas o sistemas motorizados.</p>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">🚨</div>
+            <h3>Alarmas contra intruso</h3>
+            <p>Detección inmediata de movimientos no autorizados con alertas inmediatas para disuadir cualquier amenaza.</p>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">🔥</div>
+            <h3>Alarmas de detección de incendio</h3>
+            <p>Sensores y sistemas de alerta temprana para proteger vidas y activos ante cualquier conato de incendio.</p>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">🔔</div>
+            <h3>Alarmas Eléctricas</h3>
+            <p>Sistemas de alerta sonora y lumínica de alta potencia, integrables con distintas soluciones de seguridad.</p>
+        </div>
+
         <div class="card">
             <div class="card-icon">⚡</div>
-            <h3>Respaldo Energético</h3>
-            <p>Inversores cargadores inteligentes y sistemas UPS optimizados para mantener en funcionamiento DVRs, enrutadores, alertas y cercas durante fallas del suministro comercial.</p>
+            <h3>Cercados Eléctricos</h3>
+            <p>Protección perimetral de alto voltaje diseñada bajo normativas para evitar el acceso no autorizado a su propiedad.</p>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">📶</div>
+            <h3>Redes cableadas e Inalámbricas</h3>
+            <p>Infraestructura de telecomunicaciones robusta para garantizar la conectividad de todos sus equipos y sistemas.</p>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">📺</div>
+            <h3>Pantallas Publicitarias</h3>
+            <p>Soluciones de visualización e impacto comercial mediante pantallas de alta luminosidad y definición.</p>
+        </div>
+        
+    </section>
+
+    <h2 class="section-title">Especializados en <span>Tu Sector</span></h2>
+    <section class="grid-container">
+        <div class="card">
+            <h3>Empresas y Comercios</h3>
+            <p>Infraestructura tecnológica de alta robustez para proteger inventario y activos industriales.</p>
+            <ul class="card-list">
+                <li>Controles de acceso biométricos</li>
+                <li>Redes y cableado estructurado</li>
+                <li>Detección temprana de incendios</li>
+            </ul>
         </div>
         <div class="card">
-            <div class="card-icon">👁️</div>
-            <h3>CCTV e Inteligencia</h3>
-            <p>Instalación de cámaras de alta definición y sistemas de grabación con analíticas de video avanzadas, alertas perimetrales y monitoreo en tiempo real desde tu smartphone.</p>
+            <h3>Condominios y Residencias</h3>
+            <p>Sistemas automatizados y de fácil gestión comunitaria para resguardar urbanizaciones cerradas.</p>
+            <ul class="card-list">
+                <li>Sistemas integrales de control vehicular</li>
+                <li>Monitoreo perimetral extendido</li>
+                <li>Mantenimiento preventivo programado</li>
+            </ul>
         </div>
         <div class="card">
-            <div class="card-icon">🛡️</div>
-            <h3>Cercado y Alarmas</h3>
-            <p>Diseño e instalación de cercados eléctricos perimetrales normados de alta potencia, sistemas de alarmas contra robos y sensores perimetrales contra intrusión.</p>
+            <h3>Hogares</h3>
+            <p>Tranquilidad y control total para tu familia con tecnologías inalámbricas y automatizadas.</p>
+            <ul class="card-list">
+                <li>Alarmas vecinales inteligentes</li>
+                <li>Automatización de portones y accesos</li>
+                <li>Visualización HD de cámaras remotas</li>
+            </ul>
         </div>
     </section>
 
+    <footer>
+        <p>&copy; 2026 <strong>HAIMS Seguridad Electrónica</strong>. Todos los derechos reservados.</p>
+        <p style="margin-top: 5px; font-size: 0.8rem;">Anzoátegui, Venezuela (Zona Norte: Lechería • Puerto La Cruz • Barcelona • Guanta)</p>
+    </footer>
+
+</body>
+</html>
